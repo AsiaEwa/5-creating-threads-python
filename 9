@@ -1,0 +1,21 @@
+from sys import stdout
+from time import sleep, time
+
+
+import_thread, time
+stdoutmutex = _thread.allocate_lock()
+    p=100
+def going(i): #def funkcji
+    i=1
+    for _ in range(p):
+        stdoutmutex.acquire()
+        print("Watek nr " + str(i) + " = " + str(2 ** i))
+        i+=1
+        time.sleep(0.1)
+        stdoutmutex.realease()
+        mutex = _thread.allocate_lock()
+    while True:
+        _thread.start_new_thread(going, (2,)) # zwykla funkcja
+        time.sleep(2) #oczekiwanie na zakonczenie watkow
+        if input() == 'q':break
+    print( 'Glowny watek zakonczyll dzialanie' )
