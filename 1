@@ -1,0 +1,15 @@
+import _thread # import modułu
+def child(tid): # definicja funkcji
+print('Wątek', tid,'działa' )
+def child2():# definicja funkcji
+print('Wątek bez parametrów wejściowych działa')
+print('Wartość \'return\' jest ignorowana')
+return 1
+def parent():# definicja funkcji
+i = 0
+while True: # nieskończona pętla
+i += 1
+_thread.start_new_thread(child, (i,)) # uruchomienie wątku
+_thread.start_new_thread(child2,()) # uruchomienie wątku
+if input() == 'q': break # przerwanie pracy programu
+parent()# początek pracy programu
