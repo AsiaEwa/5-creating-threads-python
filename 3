@@ -1,0 +1,14 @@
+import _thread, time
+def action(i): # definicja funkcji
+print(i ** 32)
+class Power: # definicja klasy
+def __init__(self, i): # definicja konstruktora instancji klasy
+self.i = i # definicja zmiennej instancji klasy
+def action(self): # definicja funkcji instancji klasy
+print(self.i ** 32)
+_thread.start_new_thread(action, (2,)) # zwykła funkcja
+_thread.start_new_thread((lambda: action(2)), ()) # wyrażenie lambda
+obj = Power(2) # utworzenie obiektu klasy
+_thread.start_new_thread(obj.action, ()) # funkcja instancji klasy
+time.sleep(1) # oczekiwanie na zakończenie wątków
+print('Główny wątek zakończył działanie')
