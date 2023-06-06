@@ -1,0 +1,10 @@
+import _thread, time
+def counter(myId, count): # funkcja wątków
+for i in range(count): # range: zakres liczb od 0 do count-1
+time.sleep(1) # symulowanie długotrwałego zadania
+print('[%s] => %s' % (myId, i))
+for i in range(5): # tworzenie 5 wątków
+_thread.start_new_thread(counter, (i, 5)) # każdy wątek wykonuje 5
+# zadań po około 1 sekundzie
+time.sleep(6) # wątek główny czeka na zakończenie wątków
+print('Główny wątek kończy działanie.')
