@@ -1,0 +1,13 @@
+import _thread
+stdoutmutex = _thread.allocate_lock()
+exitFlags = [False] * 10
+def counter(myId, count):
+for i in range(count):
+stdoutmutex.acquire()
+print('[%s] => %s' % (myId, i))
+stdoutmutex.release()
+exitFlags[myId] = True # zmień stan flagi
+for i in range(10): #utworzenie 10 wątków
+_thread.start_new_thread(counter, (i, 10))
+while False in exitFlags: pass #oczekiwanie na zakończenie wszystkich wątków
+print('Koniec głównego wątku')
