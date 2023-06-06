@@ -1,0 +1,15 @@
+_thread
+stdoutmutex = _thread.allocate_lock())]# blokada wydruku okna terminala
+exitmutexes = [_thread.allocate_lock() for i in range(10)]# globalny stan wątków
+def counter(myId, count):
+for i in range(count):
+stdoutmutex.acquire()# włączenie blokady
+print('[%s] => %s' % (myId, i))
+stdoutmutex.release()zwolnienie blokady
+exitmutexes[myId].acquire() # zmienia wartość zwracaną przez mutex.locked()
+# na true
+for i in range(10): #utworzenie 10 wątków
+_thread.start_new_thread(counter, (i, 10))
+for mutex in exitmutexes: #oczekiwanie na zakończenie wszystkich wątków
+while not mutex.locked(): pass #sprawdzenie stanu blokady
+print('Koniec głównego wątku')
