@@ -1,0 +1,12 @@
+import _thread, time
+def counter(myId, count): # funkcja wątku
+for i in range(count):
+time.sleep(1) # symulowanie wykonywania zadania
+mutex.acquire() # założenie blokady przez wątek
+print('[%s] => %s' % (myId, i)) # wyłączny dostęp do wspólnych zasobów
+mutex.release() # zwolnienie blokady
+mutex = _thread.allocate_lock() # zwraca obiekt blokady
+for i in range(5): # tworzenie 5 wątków
+_thread.start_new_thread(counter, (i, 5)) # każdy wątek wykonuje 5 powtórzeń
+time.sleep(6)
+print('Koniec głównego wątku')
