@@ -1,0 +1,13 @@
+import _thread # import modułu
+def child(tid): # definicja funkcji
+print('Wątek podrzędny ID', tid,'działa')
+i = 1/0 # niedozwolona operacja matematczna
+return 0
+def parent():# definicja funkcji
+i = 0
+while True:
+i += 1
+_thread.start_new_thread(child, (i,)) # uruchomienie wątku
+if input() == 'q': break # przerwanie pracy programu
+print('Wątek główny nadal działa i generuje nowe wątki')
+parent()
